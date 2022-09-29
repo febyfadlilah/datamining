@@ -18,14 +18,14 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 drive.mount('/content/drive', force_remount= True)
-ds.to_csv("/content/drive/MyDrive/datamining/irisdiskritasi.csv", index=False)
+ds.to_csv("/content/drive/MyDrive/datamining/irisdiskritasinew.csv", index=False)
 ------------------
 
 [0;31m[0m
 [0;31mNameError[0mTraceback (most recent call last)
-[0;32m<ipython-input-65-1d2e8a1a3d62>[0m in [0;36m<module>[0;34m[0m
+[0;32m<ipython-input-64-c124ed066f64>[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mdrive[0m[0;34m.[0m[0mmount[0m[0;34m([0m[0;34m'/content/drive'[0m[0;34m,[0m [0mforce_remount[0m[0;34m=[0m [0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0mds[0m[0;34m.[0m[0mto_csv[0m[0;34m([0m[0;34m"/content/drive/MyDrive/datamining/irisdiskritasi.csv"[0m[0;34m,[0m [0mindex[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mds[0m[0;34m.[0m[0mto_csv[0m[0;34m([0m[0;34m"/content/drive/MyDrive/datamining/irisdiskritasinew.csv"[0m[0;34m,[0m [0mindex[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
 [0;31mNameError[0m: name 'drive' is not defined
 NameError: name 'drive' is not defined
