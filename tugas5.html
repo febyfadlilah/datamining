@@ -52,6 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tugas 6 - Decission Tree" href="tugas6.html" />
+    <link rel="prev" title="Tugas 4 - Naive Bayes Classifier" href="tugas4.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -107,19 +109,54 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Kumpulan Tugasku
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Introduction
+  List Tugas
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="notebooks.html">
    Tugas 1 - Perhitungan Jarak
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tugas2.html">
+   Tugas 2 - Diskritisasi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tugas3.html">
+   Tugas 3 - Klasifikasi using K-NN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tugas4.html">
+   Tugas 4 - Naive Bayes Classifier
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tugas 5 - KMeans Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tugas6.html">
+   Tugas 6 - Decission Tree
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="UTS.html">
+   UTS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tugas7.html">
+   Tugas 7
   </a>
  </li>
 </ul>
@@ -378,7 +415,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-b9eebdc3-58c6-4359-8488-4bc2466eed16">
+  <div id="df-e14de309-f1f4-407e-a24d-47a207a322be">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -486,7 +523,7 @@ title="Print to PDF"
 </table>
 <p>150 rows × 4 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-b9eebdc3-58c6-4359-8488-4bc2466eed16')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-e14de309-f1f4-407e-a24d-47a207a322be')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -537,12 +574,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-b9eebdc3-58c6-4359-8488-4bc2466eed16 button.colab-df-convert');
+          document.querySelector('#df-e14de309-f1f4-407e-a24d-47a207a322be button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-b9eebdc3-58c6-4359-8488-4bc2466eed16');
+          const element = document.querySelector('#df-e14de309-f1f4-407e-a24d-47a207a322be');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -593,7 +630,7 @@ memory usage: 4.8 KB
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d181bd49-d165-4ffb-b62d-7ba628b0c803">
+  <div id="df-513aa63b-e753-4e8f-bdb2-c2636223a8b1">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -679,7 +716,7 @@ memory usage: 4.8 KB
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-d181bd49-d165-4ffb-b62d-7ba628b0c803')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-513aa63b-e753-4e8f-bdb2-c2636223a8b1')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -730,12 +767,12 @@ memory usage: 4.8 KB
 
       <script>
         const buttonEl =
-          document.querySelector('#df-d181bd49-d165-4ffb-b62d-7ba628b0c803 button.colab-df-convert');
+          document.querySelector('#df-513aa63b-e753-4e8f-bdb2-c2636223a8b1 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-d181bd49-d165-4ffb-b62d-7ba628b0c803');
+          const element = document.querySelector('#df-513aa63b-e753-4e8f-bdb2-c2636223a8b1');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -763,7 +800,7 @@ memory usage: 4.8 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f0850f4f3d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f6537156590&gt;
 </pre></div>
 </div>
 <img alt="_images/tugas5_8_1.png" src="_images/tugas5_8_1.png" />
@@ -999,7 +1036,7 @@ memory usage: 4.8 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0837bb9950&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f65310df8d0&gt;
 </pre></div>
 </div>
 <img alt="_images/tugas5_14_1.png" src="_images/tugas5_14_1.png" />
@@ -1051,6 +1088,20 @@ memory usage: 4.8 KB
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="tugas4.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tugas 4 - Naive Bayes Classifier</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="tugas6.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tugas 6 - Decission Tree</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
