@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tugas 8 - Bagging and Ensemble Learning &#8212; Data Mining Febi</title>
+    <title>Tugas 9 - Stacking &#8212; Data Mining Febi</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -221,7 +221,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://colab.research.google.com/github/febyfadlilah/datamining/blob/gh-pages/_sources/tugas8.ipynb"
+        <a href="https://colab.research.google.com/github/febyfadlilah/datamining/blob/gh-pages/_sources/tugas9.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -281,7 +281,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/febyfadlilah/datamining/issues/new?title=Issue%20on%20page%20%2Ftugas8.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/febyfadlilah/datamining/issues/new?title=Issue%20on%20page%20%2Ftugas9.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -309,7 +309,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/tugas8.ipynb"
+        <a href="_sources/tugas9.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -358,7 +358,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Tugas 8 - Bagging and Ensemble Learning</h1>
+                <h1>Tugas 9 - Stacking</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -370,72 +370,21 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="tugas-8-bagging-and-ensemble-learning">
-<h1>Tugas 8 - Bagging and Ensemble Learning<a class="headerlink" href="#tugas-8-bagging-and-ensemble-learning" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-9-stacking">
+<h1>Tugas 9 - Stacking<a class="headerlink" href="#tugas-9-stacking" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import library yang diperlukan</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">BaggingClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_val_score</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">SMOTE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">model_selection</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">StackingClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">(),</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_trainn_min_max</span><span class="p">,</span> <span class="n">y_trainn_min_max</span><span class="p">)</span>
-<span class="n">rsb</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_testn_min_max</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">]</span>
-<span class="n">Tree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rsb</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">e315df66bed9</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">(),</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_trainn_min_max</span><span class="p">,</span> <span class="n">y_trainn_min_max</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rsb</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_testn_min_max</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Decision Tree&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">Tree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rsb</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="n">b</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;X_trainn_min_max&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_testn_min_max</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">K</span><span class="p">),</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_trainn_min_max</span><span class="p">,</span> <span class="n">y_trainn_min_max</span><span class="p">)</span>
-<span class="n">rsa</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_testn_min_max</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;KNN&#39;</span><span class="p">]</span>
-<span class="n">KNN</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rsa</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="n">a</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">GaussianNB</span><span class="p">(),</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_trainn_min_max</span><span class="p">,</span> <span class="n">y_trainn_min_max</span><span class="p">)</span>
-<span class="n">rsc</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_testn_min_max</span><span class="p">)</span>
-<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Naive Bayes&#39;</span><span class="p">]</span>
-<span class="n">Bayes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rsc</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="n">c</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">Tree</span><span class="p">,</span> <span class="n">KNN</span><span class="p">,</span><span class="n">Bayes</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">Result</span>
 </pre></div>
 </div>
 </div>
@@ -472,7 +421,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/tugas8_10_0.png" src="_images/tugas8_10_0.png" />
+<img alt="_images/tugas9_5_0.png" src="_images/tugas9_5_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -487,7 +436,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/tugas8_11_0.png" src="_images/tugas8_11_0.png" />
+<img alt="_images/tugas9_6_0.png" src="_images/tugas9_6_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -792,7 +741,7 @@ Number transactions y_test dataset:  (1473,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/tugas8_18_0.png" src="_images/tugas8_18_0.png" />
+<img alt="_images/tugas9_13_0.png" src="_images/tugas9_13_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -852,7 +801,7 @@ After OverSampling, counts of label &#39;0&#39;: 3299
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy Score Gaussian =  0.3448744059742023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy Score Gaussian =  0.35709436524100474
 </pre></div>
 </div>
 </div>
@@ -875,11 +824,24 @@ After OverSampling, counts of label &#39;0&#39;: 3299
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># bagging classifier</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">base_estimator</span> <span class="o">=</span> <span class="n">base_cls</span><span class="p">,</span>            <span class="c1"># base estimator to fit on random subsets of the datraset</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">StackingClassifier</span><span class="p">(</span><span class="n">base_estimator</span> <span class="o">=</span> <span class="n">base_cls</span><span class="p">,</span>            <span class="c1"># base estimator to fit on random subsets of the datraset</span>
                             <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">num_trees</span><span class="p">,</span>           <span class="c1"># number of base estimators in the ensemble</span>
                             <span class="n">max_samples</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>                     <span class="c1"># the number of features to draw from X to train each base estimator</span>
                             <span class="n">bootstrap</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>                   <span class="c1"># Bootstrap = True means use bagging method</span>
                             <span class="n">random_state</span> <span class="o">=</span> <span class="n">seed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">TypeError</span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="n">ecccae095b20</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># bagging classifier</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">model</span> <span class="o">=</span> <span class="n">StackingClassifier</span><span class="p">(</span><span class="n">base_estimator</span> <span class="o">=</span> <span class="n">base_cls</span><span class="p">,</span>            <span class="c1"># base estimator to fit on random subsets of the datraset</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                             <span class="n">n_estimators</span> <span class="o">=</span> <span class="n">num_trees</span><span class="p">,</span>           <span class="c1"># number of base estimators in the ensemble</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                             <span class="n">max_samples</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>                     <span class="c1"># the number of features to draw from X to train each base estimator</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                             <span class="n">bootstrap</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>                   <span class="c1"># Bootstrap = True means use bagging method</span>
+
+<span class="ne">TypeError</span>: __init__() got an unexpected keyword argument &#39;base_estimator&#39;
 </pre></div>
 </div>
 </div>
@@ -888,12 +850,7 @@ After OverSampling, counts of label &#39;0&#39;: 3299
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="n">kfold</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bagging Accuracy Score:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bagging Accuracy Score:	 0.7975171910096877
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stacking Accuracy Score:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>

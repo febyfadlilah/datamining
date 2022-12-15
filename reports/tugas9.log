@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.8/dist-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.8/dist-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/local/lib/python3.8/dist-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.8/dist-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.8/dist-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.8/dist-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# bagging classifier
+model = StackingClassifier(base_estimator = base_cls,            # base estimator to fit on random subsets of the datraset
+                            n_estimators = num_trees,           # number of base estimators in the ensemble
+                            max_samples=50,                     # the number of features to draw from X to train each base estimator
+                            bootstrap = True,                   # Bootstrap = True means use bagging method
+                            random_state = seed)
+------------------
+
+[0;31m[0m
+[0;31mTypeError[0mTraceback (most recent call last)
+[0;32m<ipython-input-19-ecccae095b20>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# bagging classifier[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m model = StackingClassifier(base_estimator = base_cls,            # base estimator to fit on random subsets of the datraset
+[0m[1;32m      3[0m                             [0mn_estimators[0m [0;34m=[0m [0mnum_trees[0m[0;34m,[0m           [0;31m# number of base estimators in the ensemble[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m                             [0mmax_samples[0m[0;34m=[0m[0;36m50[0m[0;34m,[0m                     [0;31m# the number of features to draw from X to train each base estimator[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m                             [0mbootstrap[0m [0;34m=[0m [0;32mTrue[0m[0;34m,[0m                   [0;31m# Bootstrap = True means use bagging method[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTypeError[0m: __init__() got an unexpected keyword argument 'base_estimator'
+TypeError: __init__() got an unexpected keyword argument 'base_estimator'
+
